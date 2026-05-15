@@ -1,4 +1,4 @@
-# VirtuGlow
+# Filter Try-On
 
 An Android app for AR makeup try-on, powered by the DeepAR SDK. Customers browse and try on virtual makeovers using their phone camera; creators (MUAs) upload and manage their own effects.
 
