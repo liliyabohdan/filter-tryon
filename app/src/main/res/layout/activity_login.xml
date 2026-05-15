@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_sign_in.xml — Layout for the Sign In screen
+    ======================================================
+    Colors:  res/values/colors.xml
+             (C:\Users\Admin\StudioProjects\305\app\src\main\res\values\colors.xml)
+    Logo:    @drawable/logo        (logo.jpg)
+    Eye icon:@drawable/eye_icon
+
+    VIEW IDs (reference these in your Activity/Fragment):
+    - @+id/ivLogo             — company logo ImageView
+    - @+id/tvAppName          — "VirtuGlow" label
+    - @+id/etEmail            — email EditText
+    - @+id/etPassword         — password EditText
+    - @+id/ivPasswordToggle   — eye icon for show/hide password
+    - @+id/btnSignIn          — main Sign In button
+    - @+id/tvNoAccount        — "Don't have an account?" label
+    - @+id/tvSignUp           — "Sign Up" clickable text
+-->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundPrimary"
+    android:fillViewport="true"
+    android:id="@+id/main"
+    tools:context=".LoginActivity"
+    tools:ignore="HardcodedText">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:paddingTop="56dp"
+        android:paddingBottom="40dp">
+
+        <!-- ══════════════════════════════════════
+             LOGO + APP NAME
+             ══════════════════════════════════════ -->
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="152dp"
+            android:layout_height="139dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VirtuGlow"
+            android:textColor="@color/textGold"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.12"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/ivLogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ══════════════════════════════════════
+             HEADING
+             ══════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/tvSignInTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textColor="@color/textPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="36dp"
+            app:layout_constraintTop_toBottomOf="@id/tvAppName"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi there! Nice to see you again."
+            android:textColor="@color/textSecondary"
+            android:textSize="14sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvSignInTitle"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- ══════════════════════════════════════
+             EMAIL FIELD
+             ══════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/tvEmailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:layout_marginTop="36dp"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!--
+            Email input field.
+            In your Activity: etEmail = findViewById(R.id.etEmail)
+        -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="example@email.com"
+            android:textColorHint="@color/textMuted"
+            android:textColor="@color/textPrimary"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:background="@null"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="8dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvEmailLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Gold divider line under email -->
+        <View
+            android:id="@+id/dividerEmail"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@id/etEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ══════════════════════════════════════
+             PASSWORD FIELD
+             ══════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/tvPasswordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/dividerEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedString"/>
+
+        <!--
+            Password input field.
+            In your Activity: etPassword = findViewById(R.id.etPassword)
+            inputType="textPassword" hides the text by default.
+        -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="••••••••••"
+            android:textColorHint="@color/textMuted"
+            android:textColor="@color/textPrimary"
+            android:textSize="15sp"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:paddingStart="0dp"
+            android:paddingEnd="40dp"
+            android:paddingBottom="8dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvPasswordLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivPasswordToggle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/eye_icon"
+            app:tint="@color/iconTint"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toTopOf="@id/etPassword"
+            app:layout_constraintBottom_toBottomOf="@id/etPassword"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Gold divider line under password -->
+        <View
+            android:id="@+id/dividerPassword"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ══════════════════════════════════════
+             SIGN IN BUTTON
+             ══════════════════════════════════════ -->
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:text="Sign In"
+            android:textColor="@color/textOnGold"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:backgroundTint="@color/buttonPrimary"
+            android:layout_marginTop="28dp"
+            app:layout_constraintTop_toBottomOf="@id/dividerPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ══════════════════════════════════════
+             SIGN UP LINK (bottom)
+             ══════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/tvNoAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textColor="@color/textSecondary"
+            android:textSize="13sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <TextView
+            android:id="@+id/tvSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textColor="@color/textGold"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="6dp"
+            app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+            app:layout_constraintStart_toEndOf="@id/tvNoAccount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

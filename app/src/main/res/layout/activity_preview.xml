@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_preview.xml — Layout for PreviewActivity
+    ==================================================
+    Two layers stacked on top of each other:
+      1. SurfaceView  (full screen, behind)  — DeepAR renders the camera + filter here.
+      2. RelativeLayout (full screen, front) — all UI controls overlaid on top.
+
+    Controls:
+      backButton   — top-left,  returns to the previous screen
+      switchCamera — top-right, toggles front/back camera
+      recDisplay   — top-center, REC indicator (hidden when not recording)
+      recordButton — bottom-center, tap = screenshot / hold = record video
+
+    CRITICAL: The SurfaceView id="@+id/surface" must not be removed or renamed.
+    It is registered in PreviewActivity.setupViews() as the DeepAR render target.
+-->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PreviewActivity">
+
+    <!--
+        [DEEPAR] AR rendering surface — full screen, behind all other views.
+        DeepAR renders the camera feed + active filter directly into this SurfaceView.
+    -->
+    <SurfaceView
+        android:id="@+id/surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--
+        [ANDROID] Overlay: all UI controls sit on top of the SurfaceView.
+    -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <!-- Top-left: back arrow — calls finish() -->
+
+        <!-- Top-right: flip camera icon — calls cameraManager.switchCamera() -->
+
+        <!--
+            Top-center: REC indicator — GONE by default, VISIBLE while recording.
+            Contains a blinking red dot, "REC" label, and a mm:ss elapsed timer.
+            Shown/hidden by PreviewActivity.onVideoRecordingStarted/Finished().
+        -->
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="85dp"
+            android:background="@null"
+            android:contentDescription="Back"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow_left" />
+
+        <ImageButton
+            android:id="@+id/switchCamera"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="83dp"
+            android:layout_marginEnd="30dp"
+            android:background="@null"
+            android:contentDescription="Switch camera"
+            android:scaleType="centerInside"
+            android:src="@drawable/camera_white" />
+
+        <LinearLayout
+            android:id="@+id/recDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <View
+                android:id="@+id/recDot"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginEnd="6dp"
+                android:background="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/recLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rec_label"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/recTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rec_timer_default"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!--
+            Bottom-center: Capture button.
+            Tap  → screenshot saved to Pictures/
+            Hold → video recording starts; release stops it and saves to Movies/
+            Touch logic lives in PreviewActivity.setupViews().
+        -->
+        <ImageButton
+            android:id="@+id/recordButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:background="@null"
+            android:contentDescription="Tap to screenshot, hold to record"
+            android:scaleType="centerInside"
+            android:src="@drawable/record_selector" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
